@@ -9,7 +9,7 @@ import org.babyfish.jimmer.sql.KeyUniqueConstraint
 import org.babyfish.jimmer.sql.ManyToMany
 
 @Entity
-@KeyUniqueConstraint
+@KeyUniqueConstraint(noMoreUniqueConstraints = true)
 interface Role: BaseUpdateEntity, Status, OrderNo {
     // 角色标识
     @Key(group = "uidx_key")
