@@ -1,0 +1,10 @@
+export com.babyfish.jimmer.entity.User
+    -> package com.babyfish.jimmer.entity.dto
+
+input UserAddInput {
+    username
+    nickname
+    roleList {
+        code
+    }
+}

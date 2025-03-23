@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://${db.host}:${db.port}/${db.schema}?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true"
+    username: ${db.user}
+    password: ${db.pass}
+    hikari:
+      maximum-pool-size: ${db.maxPoolSize:4}
+      minimum-idle: ${db.minIdle:1}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: system
+
+db:
+  host: 192.168.0.112
+  port: 3306
+  schema: jimmer-err
+  user: root
+  pass: XDXoUwf4ZhqfO6yE
+
+
+jimmer:
+  language: kotlin
+  show-sql: true
+  pretty-sql: true
+  database-validation-mode: ERROR
+  client:
+    openapi:
+      path: /v3/api-docs
+      ui-path: /openapi.html
+      properties:
+        info:
+          title: 系统服务
+          description: |
+            系统基础服务
+          version: 1.0
+
+
+server:
+  port: 11180

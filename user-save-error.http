@@ -1,0 +1,13 @@
+### 测试保存请求
+POST http://localhost:11180/user/add
+Content-Type: application/json
+
+{
+  "nickname": "11",
+  "username": "22",
+  "roleList": [
+    {
+      "code": "default"
+    }
+  ]
+}
