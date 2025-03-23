@@ -6,11 +6,13 @@ import com.babyfish.jimmer.entity.dto.UserAddInput
 import com.babyfish.jimmer.repository.UserRepository
 import org.babyfish.jimmer.sql.ast.mutation.AssociatedSaveMode
 import org.babyfish.jimmer.sql.ast.mutation.SaveMode
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.LocalDateTime
 
 @Validated
 @RestController
@@ -18,12 +20,17 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(val userRepository: UserRepository) {
 
     @PostMapping("/add")
+    @Transactional
     fun add(@RequestBody @Validated data: UserAddInput) {
         val codeList = data.roleList.map { it.code }
 
         val entity = data.toEntity {
             nickname = "Lyp"
             status = 1
+            createdAt = LocalDateTime.now()
+            updatedAt = LocalDateTime.now()
+            createdBy = 1
+            updatedBy = 1
 
             // 判断roleList里面是否包含默认角色, 如果不包含则新增默认角色
             // 正常
@@ -45,7 +52,10 @@ class UserController(val userRepository: UserRepository) {
 //                this.code = Role.DEFAULT_ROLE_KEY
 //            } ?: this.roleList()
         }
-        userRepository.save(entity, SaveMode.INSERT_ONLY, AssociatedSaveMode.MERGE)
+        userRepository.save(entity, SaveMode.INSERT_ONLY, AssociatedSaveMode.MERGE) {
+            setIdOnlyAsReferenceAll(true)
+            setKeyOnlyAsReferenceAll()
+        }
     }
 
 
