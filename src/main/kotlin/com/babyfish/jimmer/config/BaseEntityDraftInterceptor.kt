@@ -8,7 +8,7 @@ import org.babyfish.jimmer.sql.DraftInterceptor
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
-@Component
+//@Component
 class BaseEntityDraftInterceptor: DraftInterceptor<BaseEntity, BaseEntityDraft> {
 
     override fun beforeSave(draft: BaseEntityDraft, original: BaseEntity?) {
