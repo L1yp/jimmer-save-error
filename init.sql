@@ -37,3 +37,6 @@ create table if not exists user_role_mapping
     role_id bigint unsigned not null,
     primary key (user_id, role_id)
 );
+
+INSERT INTO role (id, code, name, order_no, status, updated_at, updated_by, created_at, created_by) VALUES (1, 'admin', '系统管理员', 1, 1, '2025-03-24 00:45:49', 1, '2025-03-24 00:45:45', 1);
+INSERT INTO role (id, code, name, order_no, status, updated_at, updated_by, created_at, created_by) VALUES (2, 'default', '成员', 2, 1, '2025-03-24 00:46:10', 1, '2025-03-24 00:46:13', 1);
